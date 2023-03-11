@@ -7,7 +7,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head />
+      <body className="flex px-1.5 flex-col items-center w-full min-h-screen">
+        <div className="w-full max-w-2xl">{children}</div>
+      </body>
     </html>
   );
 }
