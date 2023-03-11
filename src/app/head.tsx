@@ -6,3 +6,5 @@ export default function Head() {
     </>
   );
 }
+
+const a: IIconSVGProps = {};
