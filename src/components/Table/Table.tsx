@@ -46,7 +46,7 @@ const TableInner = <T extends object>(
       )}
     >
       {loading && (
-        <div className="absolute inset-0 z-10 w-full h-full bg-white bg-opacity-50 center-children text-primary-500">
+        <div className="absolute inset-0 z-10 w-full h-full text-black bg-white bg-opacity-50 center-children">
           <Spinner size={50} />
         </div>
       )}
@@ -80,7 +80,7 @@ const TableInner = <T extends object>(
         </thead>
         <tbody
           {...getTableBodyProps()}
-          className="text-sm font-medium text-gray-500 "
+          className="text-sm font-medium text-gray-500"
         >
           {rows.map((row, index) => {
             prepareRow(row);

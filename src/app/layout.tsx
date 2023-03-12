@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className="flex flex-col items-center w-full min-h-screen px-3">
+      <body className="flex flex-col items-center w-full min-h-screen px-3 pb-10">
         <Toaster
           position="bottom-center"
           toastOptions={{

@@ -37,6 +37,7 @@ class Api {
       limit: args.limit.toString(),
       offset: args.offset.toString(),
     }).toString();
+
     const data = await fetch(
       `${process.env.NEXT_PUBLIC_HOST}/api/view?${query}`,
       {
