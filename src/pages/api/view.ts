@@ -27,8 +27,6 @@ export default function handler(
   const limit = parseInt((req.query.limit || "") + "") || 0;
   const offset = parseInt((req.query.offset || "") + "") || 0;
 
-  console.log({ limit, offset });
-
   const returnData = userData.slice(offset, limit + offset);
 
   res.status(200).json({

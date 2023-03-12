@@ -1,5 +1,8 @@
-import { UserListArgs } from "@/pages/api/view";
+import { Table } from "@/components/Table/Table";
+import { User, UserListArgs } from "@/pages/api/view";
 import api from "@/services/sdk";
+import { useMemo } from "react";
+import { Column, useTable } from "react-table";
 
 const fetchUsers = async (args: UserListArgs) => {
   const data = await api.getUserList({
@@ -23,16 +26,33 @@ export default async function ListUsersView({
     offset,
   });
 
+  const columns: Column<User>[] = [
+    {
+      Header: "ID",
+      accessor: "id",
+    },
+    {
+      Header: "Name",
+      accessor: "name",
+      minWidth: 200,
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+      minWidth: 200,
+    },
+    {
+      Header: "Phone",
+      accessor: "phone",
+      minWidth: 200,
+    },
+  ];
+
   return (
     <main className="mt-11">
       <h1>List Users</h1>
       <div className="mt-5 space-y-3">
-        {users.map((user) => (
-          <div className="p-3 border border-gray-400 rounded-lg" key={user.id}>
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
-          </div>
-        ))}
+        <Table columns={columns} data={users} />
       </div>
     </main>
   );
