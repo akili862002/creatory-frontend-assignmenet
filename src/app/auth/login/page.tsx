@@ -5,42 +5,42 @@ import { Button } from "@/components/Button/Button";
 import { FormikForm } from "@/components/FormikForm/FormikForm";
 import TextField from "@/components/TextField/TextField";
 import FormPageLayout from "@/layouts/FormPageLayout";
+import { LoginArgs } from "@/pages/api/auth";
 import api from "@/services/sdk";
-import { sleep } from "@/utils/sleep.utils";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useMutation } from "react-query";
 
 export default function Login() {
   const [initValues] = useState({
     username: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
+  const mutation = useMutation(
+    (values: LoginArgs) => {
+      return api.login(values);
+    },
+    {
+      onSuccess: (data) => {
+        alertBar.success("Congratulation! Login successfully!");
+      },
+      onError: (error) => {
+        if (error instanceof AxiosError) {
+          const status = error.response?.status;
+          if (status === 401) {
+            alertBar.error("Invalid username or password, please try again!");
+          }
+        }
+      },
+    }
+  );
+
   const [alertBar, AlertBar] = useAlertBar();
   const router = useRouter();
 
   const handleSubmit = async (values: typeof initValues) => {
-    try {
-      setLoading(true);
-      const { data } = await api.login(values);
-
-      if (data.auth) {
-        alertBar.success("Login successful!");
-        sleep(1000).then(() => {
-          router.push("/");
-        });
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        switch (error.response?.status) {
-          case 401:
-            alertBar.error("Invalid username or password, please try again!");
-        }
-      }
-    } finally {
-      setLoading(false);
-    }
+    mutation.mutate(values);
   };
 
   return (
@@ -73,7 +73,11 @@ export default function Login() {
                 Forgot password?
               </a>
             </div>
-            <Button loading={loading} type="submit" className="w-full !mt-7">
+            <Button
+              loading={mutation.isLoading}
+              type="submit"
+              className="w-full !mt-7"
+            >
               Login
             </Button>
           </>
