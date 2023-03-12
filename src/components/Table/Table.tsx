@@ -52,10 +52,7 @@ const TableInner = <T extends object>(
       )}
       <table
         {...getTableProps()}
-        className={cn(
-          "font-light bg-white divide-y table-auto text-md",
-          className
-        )}
+        className={cn("font-light divide-y table-auto text-md", className)}
       >
         <thead className="overflow-hidden text-sm">
           {headerGroups.map((headerGroup, index) => (
