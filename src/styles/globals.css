@@ -11,3 +11,11 @@ body {
 
   @apply text-base text-black bg-gray-100;
 }
+
+a {
+  @apply cursor-pointer hover:underline;
+}
+
+h1 {
+  @apply text-3xl font-bold;
+}

@@ -92,7 +92,7 @@ const FormikFormInner = <T,>(
       onSubmit={onSubmit}
     >
       {(props) => (
-        <Form id={formId} className={cn("space-y-2", className)}>
+        <Form id={formId} className={cn("space-y-3", className)}>
           {children?.({
             ...props,
             fieldProps: generatePropsForFields(),
