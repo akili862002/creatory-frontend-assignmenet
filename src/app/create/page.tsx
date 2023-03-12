@@ -1,5 +1,6 @@
 "use client";
 
+import { useAlertBar } from "@/components/AlertBar/AlertBar";
 import { Button } from "@/components/Button/Button";
 import { FormikForm } from "@/components/FormikForm/FormikForm";
 import TextField from "@/components/TextField/TextField";
@@ -8,18 +9,34 @@ import {
   vietnamesePhoneNumberRegex,
 } from "@/constants/regexes";
 import FormPageLayout from "@/layouts/FormPageLayout";
+import { CreateUserArgs } from "@/pages/api/create";
+import api from "@/services/sdk";
 import { useState } from "react";
+import { useMutation } from "react-query";
 
-export default function Create() {
+export default function CreateUser() {
   const [initValues] = useState({
     name: "",
     email: "",
     phone: "",
     password: "",
   });
+  const [alertBar, AlertBar] = useAlertBar();
 
-  const handleSubmit = async (values: typeof initValues) => {
-    console.log({ values });
+  const mutation = useMutation(
+    (values: CreateUserArgs) => {
+      return api.createUser(values);
+    },
+    {
+      onSuccess: (data) => {
+        alertBar.success("Congratulation! Create a user successfully!");
+      },
+      onError: (error) => {},
+    }
+  );
+
+  const handleSubmit = (values: typeof initValues) => {
+    mutation.mutate(values);
   };
 
   return (
@@ -54,6 +71,7 @@ export default function Create() {
       >
         {({ fieldProps }) => (
           <>
+            {AlertBar}
             <TextField
               {...fieldProps.name}
               label="Name"
@@ -75,7 +93,11 @@ export default function Create() {
               placeholder="••••••"
               type="password"
             />
-            <Button type="submit" className="w-full !mt-5">
+            <Button
+              loading={mutation.isLoading}
+              type="submit"
+              className="w-full !mt-5"
+            >
               Create User
             </Button>
           </>

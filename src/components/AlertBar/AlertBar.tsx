@@ -96,7 +96,7 @@ export const AlertBar: React.FC<IAlertBarProps> = ({ id, className = "" }) => {
           {
             "text-gray-700 bg-gray-100": type === "info",
             "text-red-600 bg-red-100": type === "error",
-            "text-green-700 bg-green-100": type === "success",
+            "text-green-700 bg-green-200": type === "success",
             "text-yellow-600 bg-yellow-100": type === "warning",
           },
           className

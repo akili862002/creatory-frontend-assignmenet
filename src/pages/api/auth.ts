@@ -1,5 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+export type LoginArgs = {
+  username: string;
+  password: string;
+};
+
 export type AuthResponseData = {
   auth: boolean;
   errorDetails?: string;

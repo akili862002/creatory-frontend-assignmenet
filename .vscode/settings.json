@@ -3,7 +3,8 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
     "formik",
-    "headlessui"
+    "headlessui",
+    "regexes"
   ],
   "tailwindCSS.classAttributes": [
     "class",

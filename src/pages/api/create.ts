@@ -1,12 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
+export type CreateUserArgs = {
+  name: string;
+  password: string;
+  phone: string;
+  email: string;
+};
+
+export type CreateUserResponseData = {
   success: boolean;
 };
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<CreateUserResponseData>
 ) {
   if (req.method === "POST") {
     if (

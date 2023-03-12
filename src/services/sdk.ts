@@ -1,4 +1,5 @@
-import { AuthResponseData } from "@/pages/api/auth";
+import { AuthResponseData, LoginArgs } from "@/pages/api/auth";
+import { CreateUserArgs, CreateUserResponseData } from "@/pages/api/create";
 import axios from "axios";
 
 export class ApiSDK {
@@ -22,8 +23,12 @@ export class ApiSDK {
 }
 
 class Api {
-  public login = (args: { username: string; password: string }) => {
+  public login = (args: LoginArgs) => {
     const data = axios.post<AuthResponseData>("/api/auth", args);
+    return data;
+  };
+  public createUser = (args: CreateUserArgs) => {
+    const data = axios.post<CreateUserResponseData>("/api/create", args);
     return data;
   };
 }
