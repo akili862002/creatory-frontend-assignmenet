@@ -8,7 +8,7 @@ export default function Header() {
     <div className="flex flex-row justify-between w-full h-12 py-2">
       <div>
         <Link href="/">
-          <img src="./logo.png" className="w-auto h-full" />
+          <img src="/logo.png" className="w-auto h-full" />
         </Link>
       </div>
       <div>

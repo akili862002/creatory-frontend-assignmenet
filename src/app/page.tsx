@@ -13,7 +13,7 @@ export default function Home() {
       </div>
       <div className="mt-8 space-y-3">
         <RouteLink
-          href="/login"
+          href="/auth/login"
           title="Sign in page"
           description="Assignment task 1: Sign in page using /api/auth endpoint"
         />
