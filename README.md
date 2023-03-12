@@ -1,99 +1,71 @@
-Thank you for taking the time to work on our assignment.
+# CREATORY Frontend Assignment 2023
 
-## Introduction
+This is a frontend web development project that uses Next.js, React, and Tailwind CSS. The purpose of this project is to showcase the applicant's frontend development skills.
 
-The goal of this assignment is for us to get a better idea of your ability while not taking too much of your time.
+## Demo
 
-## Requirements
+- [Live Demo](https://creatory-frontend-assignment-2023.vercel.app/)
 
-We like programmers who are curious and comfortable with new technology. We'd love for you to use the new Next.js app directory. But if you feel more comfortable with the traditional pages structure then go for it! In case you do not have enough time feel free to skip parts of the assignment.
+## Folder Structure
 
-The criteria on which you are judged:
+## Getting Started
 
-1. The simplicity and structure of your state
-2. How well you use the Next.js features such as SSR
-3. Readability of your code
-4. Performance for the user
-5. How well you use components
-6. Selection of your libraries and frameworks
+### Prerequisites
 
-Bonus points for a beautiful application.
+To run this project, you need to have Node.js installed on your machine.
 
-## Assignment
+### Installation
 
-#### 1. Auth
+1. Clone the repository to your local machine.
+2. Navigate to the project directory and run npm install to install the dependencies.
 
-Use the `/api/auth` endpoint to authenticate and show us how you keep the authentication state throughout the frontend. The correct username and password is admin/admin.
+### Development
 
-**Parameters**
-| Name | Required| Type |
-| --- | ------ |----------|
-| username | Required | String |
-| password | Required | String |
+To run the project in development mode, run
 
-**Response**
-
-```json
-{
-  "auth": true || false
-}
+```shell
+npm run dev
 ```
 
-#### 2. Create
+This will start a local development server at http://localhost:3000. The server will automatically reload whenever you make changes to the code.
 
-Create a page with a form that is only accessible by authenticated users. Use the `/api/create` endpoint to create a new object with the following validated attributes:
+### Building
 
-1. Name, should have at least 2 characters and no more than 1000.
-2. Password, should have at least a number, a special character, and be more than 8 characters long.
-3. A valid vietnamese phone number
-4. An email address
+To build the project for production, run
 
-**Parameters**
-| Name | Required| Type |
-| --- | ------ |----------|
-| name | Required | String |
-| password | Required | String |
-| phone | Required | String |
-| email | Required | String |
-
-**Response**
-
-```json
-{
-  "success": true || false
-}
+```shell
+npm run build
 ```
 
-#### 3. View
+This will create an optimized build of the project in the ./next directory.
 
-Create a page where only authenticated users can see a paginated table with the return data. Get the data from `/api/view`
+### Production
 
-**Parameters**
-| Name | Required| Type |
-| --- | ------ |----------|
-| offset | Required | String |
-| limit | Required | String |
+To start the production server, run
 
-**Response**
-
-```json
-{
-  "total": 205,
-  "limit": 2,
-  "offset": 10,
-  "data": [
-    {
-      "id": "63f2f7f75a9c799b30c04ce0",
-      "name": "Lena Woodward",
-      "email": "lenawoodward@earthwax.com",
-      "phone": "+84 (968) 510-2748"
-    },
-    {
-      "id": "63f2f7f77fc65f4eae54cbd0",
-      "name": "Petersen Jacobson",
-      "email": "petersenjacobson@earthwax.com",
-      "phone": "+84 (812) 589-2242"
-    }
-  ]
-}
+```shell
+npm run start
 ```
+
+This will start a server that serves the optimized build created by npm run build.
+
+### Dependencies
+
+This project uses the following dependencies:
+
+- **Next.js**: A React framework for building server-side rendered and static websites.
+  React: A JavaScript library for building user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for building custom designs quickly.
+- **Axios**: A Promise-based HTTP client for the browser and node.js.
+- **Yup**: A JavaScript schema validation library.
+- **Formik**: A library for building forms in React.
+- **React-Table**: A lightweight and fast table library for React.
+- **React-Query**: A library for managing remote data with React.
+- **Next-Auth**: A complete authentication solution for Next.js applications.
+- **Classnames**: A JavaScript utility for conditionally joining classNames together.
+- **Material Ripple Effects**: A CSS library for creating ripple effects on Material Design elements.
+- **Tailwind Merge**: A utility for merging Tailwind CSS classes.
+- **React Hot Toast**: A lightweight toast notification library for React.
+- **Headless UI React**: A set of unstyled, fully accessible UI components for React.
+
+### Author

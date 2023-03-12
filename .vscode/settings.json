@@ -4,7 +4,8 @@
   "cSpell.words": [
     "formik",
     "headlessui",
-    "regexes"
+    "regexes",
+    "tailwindcss"
   ],
   "tailwindCSS.classAttributes": [
     "class",
