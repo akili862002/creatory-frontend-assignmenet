@@ -1,5 +1,6 @@
 "use client";
 
+import { SessionProvider } from "next-auth/react";
 import "@/config/axios";
 import Header from "@/components/Header/Header";
 import "@/styles/globals.css";
@@ -17,21 +18,23 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body className="flex flex-col items-center w-full min-h-screen px-3 pb-10">
-        <Toaster
-          position="bottom-center"
-          toastOptions={{
-            style: {
-              background: "#363636",
-              color: "#fff",
-            },
-          }}
-        />
-        <QueryClientProvider client={queryClient}>
-          <div className="w-full max-w-2xl">
-            <Header />
-            {children}
-          </div>
-        </QueryClientProvider>
+        <SessionProvider>
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              style: {
+                background: "#363636",
+                color: "#fff",
+              },
+            }}
+          />
+          <QueryClientProvider client={queryClient}>
+            <div className="w-full max-w-2xl">
+              <Header />
+              {children}
+            </div>
+          </QueryClientProvider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -58,7 +58,7 @@ const UserTable: React.FC<IUserTableProps> = ({ data, limit, offset }) => {
   return (
     <div>
       <Table columns={columns} data={data.data} />
-      <div className="flex justify-between mt-5">
+      <div className="flex flex-col items-center gap-3 mt-5 sm:justify-between sm:flex-row">
         <PageSizeSelect
           size={limit}
           options={[10, 20, 50, 100]}

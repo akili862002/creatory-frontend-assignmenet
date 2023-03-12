@@ -7,7 +7,9 @@ import TextField from "@/components/TextField/TextField";
 import FormPageLayout from "@/layouts/FormPageLayout";
 import { LoginArgs } from "@/pages/api/auth";
 import api from "@/services/sdk";
+import { sleep } from "@/utils/sleep.utils";
 import { AxiosError } from "axios";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "react-query";
@@ -17,30 +19,37 @@ export default function Login() {
     username: "",
     password: "",
   });
-  const mutation = useMutation(
-    (values: LoginArgs) => {
-      return api.login(values);
-    },
-    {
-      onSuccess: (data) => {
-        alertBar.success("Congratulation! Login successfully!");
-      },
-      onError: (error) => {
-        if (error instanceof AxiosError) {
-          const status = error.response?.status;
-          if (status === 401) {
-            alertBar.error("Invalid username or password, please try again!");
-          }
-        }
-      },
-    }
-  );
-
+  const [loading, setLoading] = useState(false);
   const [alertBar, AlertBar] = useAlertBar();
   const router = useRouter();
 
   const handleSubmit = async (values: typeof initValues) => {
-    mutation.mutate(values);
+    setLoading(true);
+    try {
+      const response = await signIn("credentials", {
+        username: values.username,
+        password: values.password,
+        redirect: false,
+      });
+
+      if (!response.ok && response?.status === 401) {
+        return alertBar.error(
+          "Invalid username or password, please try again!"
+        );
+      }
+
+      if (response.ok) {
+        alertBar.success("Congratulation! Login successfully!");
+        sleep(1000).then(() => {
+          router.push("/", {
+            forceOptimisticNavigation: true,
+          });
+        });
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -73,11 +82,7 @@ export default function Login() {
                 Forgot password?
               </a>
             </div>
-            <Button
-              loading={mutation.isLoading}
-              type="submit"
-              className="w-full !mt-7"
-            >
+            <Button loading={loading} type="submit" className="w-full !mt-7">
               Login
             </Button>
           </>
