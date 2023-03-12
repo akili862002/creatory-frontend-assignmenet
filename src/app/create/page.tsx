@@ -3,7 +3,10 @@
 import { Button } from "@/components/Button/Button";
 import { FormikForm } from "@/components/FormikForm/FormikForm";
 import TextField from "@/components/TextField/TextField";
-import { atLeastOneNumberAndSpecialCharacterRegex } from "@/constants/regexes";
+import {
+  atLeastOneNumberAndSpecialCharacterRegex,
+  vietnamesePhoneNumberRegex,
+} from "@/constants/regexes";
 import FormPageLayout from "@/layouts/FormPageLayout";
 import { useState } from "react";
 
@@ -35,7 +38,10 @@ export default function Create() {
             .string()
             .required("Email is required")
             .email("Email is not valid!"),
-          phone: yup.string().required("Phone number is required"),
+          phone: yup
+            .string()
+            .required("Phone number is required")
+            .matches(vietnamesePhoneNumberRegex, "Phone number is not valid!"),
           password: yup
             .string()
             .required("Password is required")
