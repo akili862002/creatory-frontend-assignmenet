@@ -1,3 +1,5 @@
+"use client";
+
 import { Form, Formik, FormikProps } from "formik";
 import React, {
   ForwardedRef,
@@ -90,7 +92,7 @@ const FormikFormInner = <T,>(
       onSubmit={onSubmit}
     >
       {(props) => (
-        <Form id={formId} className={cn("space-y-1", className)}>
+        <Form id={formId} className={cn("space-y-2", className)}>
           {children?.({
             ...props,
             fieldProps: generatePropsForFields(),
