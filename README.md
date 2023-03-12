@@ -1,12 +1,35 @@
-# CREATORY Frontend Assignment 2023
+<img src="./public/logo.png" height="70px" />
+
+# Frontend Assignment 2023
 
 This is a frontend web development project that uses Next.js, React, and Tailwind CSS. The purpose of this project is to showcase the applicant's frontend development skills.
 
 ## Demo
 
-- [Live Demo](https://creatory-frontend-assignment-2023.vercel.app/)
+- [Live Demo](https://creatory-frontend-assignmenet.vercel.app/)
 
 ## Folder Structure
+
+The project is structured as follows:
+
+- **app**: Contains NextJS 13 pages.
+- **components**: Contains the React components used in the project.
+- **config**: Contains the configuration files for the project.
+- **constants**: Contains the constants used in the project.
+- **data**: Contains the mock data used in the API.
+- **layouts**: Contains the layouts used in the project.
+- **pages/api**: Contains the API routes used in the project.
+- **pages/api/[...nextauth].tsx**: Contains the NextAuth configuration.
+- **services**: Contains the API SDK used in the project.
+- **styles**: Contains the global styles used in the project.
+- **utils**: Contains the utility functions used in the project.
+
+## Route structure
+
+- `/` - Home page, contains routes to all other pages
+- `/auth/login` - Sign in page
+- `/create` - An page for creating a new user
+- `/users` - A page for viewing all users
 
 ## Getting Started
 
@@ -49,6 +72,16 @@ npm run start
 
 This will start a server that serves the optimized build created by npm run build.
 
+### Deployment
+
+You can deploy the project to Vercel by following the steps below:
+
+1. Create a Vercel account.
+2. Link your GitHub account to Vercel.
+3. Create a new project and select the repository that contains the project.
+4. Make sure you add environment variables for the NEXT_PUBLIC_HOST and NEXTAUTH_SECRET
+5. Click on the "Deploy" button.
+
 ### Dependencies
 
 This project uses the following dependencies:
@@ -69,3 +102,5 @@ This project uses the following dependencies:
 - **Headless UI React**: A set of unstyled, fully accessible UI components for React.
 
 ### Author
+
+Nguyen Tien Dung (dung862002@gmail.com)
