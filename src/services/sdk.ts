@@ -1,3 +1,4 @@
+import { AuthResponseData } from "@/pages/api/auth";
 import axios from "axios";
 
 export class ApiSDK {
@@ -22,7 +23,7 @@ export class ApiSDK {
 
 class Api {
   public login = (args: { username: string; password: string }) => {
-    const data = axios.post("/api/auth", args);
+    const data = axios.post<AuthResponseData>("/api/auth", args);
     return data;
   };
 }

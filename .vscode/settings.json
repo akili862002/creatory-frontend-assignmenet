@@ -2,6 +2,20 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
-    "formik"
+    "formik",
+    "headlessui"
+  ],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "enter",
+    "enterActive",
+    "enterFrom",
+    "enterTo",
+    "leave",
+    "leaveActive",
+    "leaveFrom",
+    "leaveTo"
   ]
 }

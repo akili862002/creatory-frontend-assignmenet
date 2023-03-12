@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
+export type AuthResponseData = {
   auth: boolean;
   errorDetails?: string;
 };
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<AuthResponseData>
 ) {
   if (req.method === "POST") {
     if (req.body.username === "admin" && req.body.password === "admin") {

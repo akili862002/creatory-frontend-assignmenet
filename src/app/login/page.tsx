@@ -1,10 +1,13 @@
 "use client";
 
+import { useAlertBar } from "@/components/AlertBar/AlertBar";
 import { Button } from "@/components/Button/Button";
 import { FormikForm } from "@/components/FormikForm/FormikForm";
 import TextField from "@/components/TextField/TextField";
 import api from "@/services/sdk";
+import { sleep } from "@/utils/sleep.utils";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
@@ -13,16 +16,26 @@ export default function Login() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [alertBar, AlertBar] = useAlertBar();
+  const router = useRouter();
 
   const handleSubmit = async (values: typeof initValues) => {
     try {
       setLoading(true);
       const { data } = await api.login(values);
-      console.log({ data });
+
+      if (data.auth) {
+        alertBar.success("Login successful!");
+        sleep(1000).then(() => {
+          router.push("/");
+        });
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
-        const status = error.response?.status;
-        console.log(status);
+        switch (error.response?.status) {
+          case 401:
+            alertBar.error("Invalid username or password, please try again!");
+        }
       }
     } finally {
       setLoading(false);
@@ -46,6 +59,7 @@ export default function Login() {
           >
             {({ fieldProps }) => (
               <>
+                {AlertBar}
                 <TextField
                   {...fieldProps.username}
                   label="Username"
