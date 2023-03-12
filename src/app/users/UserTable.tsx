@@ -14,12 +14,14 @@ const UserTable: React.FC<IUserTableProps> = ({ users }) => {
     {
       Header: "ID",
       accessor: (row) => (
-        <CopyableText className="max-w-[120px]">{row.id}</CopyableText>
+        <CopyableText className="max-w-[120px]" buttonClassName="bg-gray-100">
+          {row.id}
+        </CopyableText>
       ),
     },
     {
       Header: "Name",
-      accessor: "name",
+      accessor: (row) => <p className="font-bold text-black">{row.name}</p>,
       minWidth: 200,
     },
     {

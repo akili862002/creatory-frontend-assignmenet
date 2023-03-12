@@ -1,4 +1,4 @@
-import { cn } from "@/utils/classnames.utils";
+import { cn, cnx } from "@/utils/classnames.utils";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { CopyIcon, TickIcon } from "./CopyableText.icons";
@@ -6,11 +6,13 @@ import { CopyIcon, TickIcon } from "./CopyableText.icons";
 interface ICopyableTextProps {
   className?: string;
   children: string;
+  buttonClassName?: string;
 }
 
 const CopyableText: React.FC<ICopyableTextProps> = ({
   className,
   children,
+  buttonClassName,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -26,7 +28,10 @@ const CopyableText: React.FC<ICopyableTextProps> = ({
       {children}
       <button
         type="button"
-        className="absolute top-0 bottom-0 right-0 hidden h-full px-2 bg-white group-hover:block"
+        className={cnx(
+          "absolute top-0 bottom-0 right-0 hidden h-full px-2 bg-white group-hover:block",
+          buttonClassName
+        )}
         onClick={handleCopy}
         title="Copy"
       >
