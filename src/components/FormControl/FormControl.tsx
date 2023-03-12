@@ -23,12 +23,7 @@ const FormControl = ({
   disabled = false,
   children,
 }: PropsWithChildren<IFormControlProps>) => {
-  let meta: Partial<FieldMetaProps<any>> = { touched: false, error: undefined };
-  let _;
-
-  if (name) {
-    [_, meta] = useField(name);
-  }
+  let [_, meta] = useField(name);
 
   const isError: boolean = !!meta.touched && !!meta.error;
 

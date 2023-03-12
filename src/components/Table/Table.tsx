@@ -58,6 +58,7 @@ const TableInner = <T extends object>(
           {headerGroups.map((headerGroup, index) => (
             <tr
               {...headerGroup.getHeaderGroupProps()}
+              key={index}
               className="font-semibold text-gray-500 "
             >
               {headerGroup.headers.map((column, index) => (

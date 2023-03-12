@@ -42,6 +42,7 @@ class Api {
       `${process.env.NEXT_PUBLIC_HOST}/api/view?${query}`,
       {
         method: "GET",
+        cache: "no-store",
       }
     );
     return await data.json();
