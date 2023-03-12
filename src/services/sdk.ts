@@ -1,5 +1,6 @@
 import { AuthResponseData, LoginArgs } from "@/pages/api/auth";
 import { CreateUserArgs, CreateUserResponseData } from "@/pages/api/create";
+import { UserListArgs, UserResponse } from "@/pages/api/view";
 import axios from "axios";
 
 export class ApiSDK {
@@ -30,6 +31,19 @@ class Api {
   public createUser = (args: CreateUserArgs) => {
     const data = axios.post<CreateUserResponseData>("/api/create", args);
     return data;
+  };
+  public getUserList = async (args: UserListArgs): Promise<UserResponse> => {
+    const query = new URLSearchParams({
+      limit: args.limit.toString(),
+      offset: args.offset.toString(),
+    }).toString();
+    const data = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST}/api/view?${query}`,
+      {
+        method: "GET",
+      }
+    );
+    return await data.json();
   };
 }
 

@@ -1,18 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import userData from "../../data/data.json";
 
-type User = {
+export type User = {
   id: string;
   name: string;
   phone: string;
   email: string;
 };
 
-type UserResponse = {
+export type UserResponse = {
   data: Array<User>;
   limit: number;
   offset: number;
   total: number;
+};
+
+export type UserListArgs = {
+  limit: number;
+  offset: number;
 };
 
 export default function handler(
@@ -22,14 +27,14 @@ export default function handler(
   const limit = parseInt((req.query.limit || "") + "") || 0;
   const offset = parseInt((req.query.offset || "") + "") || 0;
 
+  console.log({ limit, offset });
+
   const returnData = userData.slice(offset, limit + offset);
 
-  res
-    .status(200)
-    .json({
-      total: userData.length,
-      limit: limit,
-      offset: offset,
-      data: returnData,
-    });
+  res.status(200).json({
+    total: userData.length,
+    limit: limit,
+    offset: offset,
+    data: returnData,
+  });
 }
